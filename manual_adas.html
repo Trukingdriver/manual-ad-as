@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual Técnico ADAS - Sistemas Avanzados de Asistencia a la Conducción</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .header .meta-info {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            background: rgba(255,255,255,0.1);
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 120px;
+            z-index: 999;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: #2a5298;
+            color: white;
+            padding: 1rem;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav a {
+            color: #2a5298;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            transition: all 0.3s;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+        }
+
+        .nav a:hover {
+            background: #f0f4f8;
+            border-bottom-color: #2a5298;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 200px;
+        }
+
+        .sidebar h3 {
+            color: #2a5298;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #2a5298;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sidebar a:hover {
+            color: #2a5298;
+            padding-left: 5px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 200px;
+        }
+
+        .section h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #2a5298;
+        }
+
+        .section h3 {
+            color: #2a5298;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h4 {
+            color: #444;
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background: #2a5298;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        tr:hover {
+            background: #e9ecef;
+        }
+
+        /* Images */
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Alerts and Boxes */
+        .alert {
+            padding: 1rem 1.5rem;
+            border-left: 4px solid;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border-color: #ffc107;
+            color: #856404;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        /* Steps */
+        .steps {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .steps ol {
+            margin-left: 1.5rem;
+        }
+
+        .steps li {
+            margin-bottom: 0.75rem;
+        }
+
+        /* Code blocks */
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Print Button */
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2a5298;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            font-size: 1rem;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .print-btn:hover {
+            background: #1e3c72;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                display: none;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media print {
+            .nav-container, .sidebar, .print-btn {
+                display: none !important;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+                margin: 0;
+                padding: 0;
+            }
+
+            .main-content {
+                box-shadow: none;
+                padding: 0;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+
+            body {
+                background: white;
+            }
+        }
+
+        /* Highlight */
+        .highlight {
+            background: yellow;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: #2a5298;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        .badge-warning {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .badge-danger {
+            background: #dc3545;
+        }
+
+        .badge-success {
+            background: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>🚗 Manual Técnico ADAS</h1>
+        <p class="subtitle">Sistemas Avanzados de Asistencia a la Conducción</p>
+        <div class="meta-info">
+            <span>📄 Documento: MT-ADAS-2024-001</span> | 
+            <span>📅 Versión: 2.1</span> | 
+            <span>🔄 Fecha: Enero 2024</span>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <button class="nav-toggle" onclick="toggleNav()">☰ Menú de Navegación</button>
+        <nav class="nav" id="mainNav">
+            <a href="#intro">Introducción</a>
+            <a href="#especificaciones">Especificaciones</a>
+            <a href="#acc">ACC</a>
+            <a href="#lka">LKA</a>
+            <a href="#aeb">AEB</a>
+            <a href="#bsm">BSM</a>
+            <a href="#parking">Parking</a>
+            <a href="#diagnostico">Diagnóstico</a>
+            <a href="#mantenimiento">Mantenimiento</a>
+        </nav>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <h3>📑 Índice Completo</h3>
+            <ul>
+                <li><a href="#intro">1. Información General</a></li>
+                <li><a href="#arquitectura">1.2 Arquitectura del Sistema</a></li>
+                <li><a href="#especificaciones">2. Especificaciones Técnicas</a></li>
+                <li><a href="#acc">3. Control de Crucero Adaptativo</a></li>
+                <li><a href="#lka">4. Mantenimiento de Carril</a></li>
+                <li><a href="#aeb">5. Frenado Automático</a></li>
+                <li><a href="#bsm">6. Monitor Ángulo Muerto</a></li>
+                <li><a href="#parking">7. Asistente Estacionamiento</a></li>
+                <li><a href="#diagnostico">8. Diagnóstico</a></li>
+                <li><a href="#mantenimiento">9. Mantenimiento</a></li>
+                <li><a href="#prompts">10. Prompts IA</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Sección 1: Introducción -->
+            <section id="intro" class="section">
+                <h2>1. Información General del Sistema</h2>
+                
+                <h3>1.1 Descripción del Sistema</h3>
+                <p>Los <strong>Sistemas Avanzados de Asistencia a la Conducción (ADAS)</strong> representan la integración de múltiples tecnologías de detección, procesamiento y actuación diseñadas para mejorar la seguridad activa del vehículo.</p>
+                
+                <div class="alert alert-info">
+                    <strong>Importante:</strong> Los sistemas ADAS son dispositivos de asistencia y <strong>NO</strong> reemplazan la responsabilidad del conductor en el control del vehículo.
+                </div>
+
+                <h3>1.2 Arquitectura del Sistema ADAS</h3>
+                
+                <div class="image-container">
+                    <img src="imagen5_diagrama_flujo.png" alt="Diagrama de flujo del sistema ADAS">
+                    <p class="image-caption">Figura 1: Diagrama de flujo operativo del sistema ADAS</p>
+                </div>
+
+                <p>El diagrama anterior ilustra el flujo de información desde los sensores hasta las acciones del sistema:</p>
+
+                <h4>Entradas de Sensor:</h4>
+                <ul>
+                    <li><strong>Cámara:</strong> Detección de carriles y objetos visuales</li>
+                    <li><strong>Radar:</strong> Medición de distancia y velocidad relativa</li>
+                    <li><strong>Ultrasónico:</strong> Alertas de proximidad</li>
+                </ul>
+
+                <h4>Unidad de Procesamiento:</h4>
+                <ul>
+                    <li>ECU con motor de decisión IA procesa datos en tiempo real</li>
+                    <li>Tiempo de respuesta: &lt;100 ms</li>
+                    <li>Fusión de sensores para validación cruzada</li>
+                </ul>
+
+                <h4>Salidas del Sistema:</h4>
+                <ul>
+                    <li>Alertas al conductor (visuales, auditivas, hápticas)</li>
+                    <li>Intervención activa (frenado, corrección de dirección)</li>
+                </ul>
+            </section>
+
+            <!-- Sección 2: Especificaciones -->
+            <section id="especificaciones" class="section">
+                <h2>2. Especificaciones Técnicas</h2>
+
+                <h3>2.1 Sensores y Características</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Radar Frontal</th>
+                            <th>Cámara Estéreo</th>
+                            <th>Ultrasónico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Frecuencia</strong></td>
+                            <td>76-77 GHz</td>
+                            <td>N/A</td>
+                            <td>48-52 kHz</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alcance</strong></td>
+                            <td>1-200 m</td>
+                            <td>0.5-120 m</td>
+                            <td>0.15-2.5 m</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Campo de Visión</strong></td>
+                            <td>±9° horizontal</td>
+                            <td>120° horizontal</td>
+                            <td>80° cónico</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Precisión</strong></td>
+                            <td>±0.1 m distancia</td>
+                            <td>±5 cm carril</td>
+                            <td>±2 cm</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Temperatura Op.</strong></td>
+                            <td>-40°C a +85°C</td>
+                            <td>-20°C a +70°C</td>
+                            <td>-30°C a +80°C</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Rangos de Operación</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sistema</th>
+                            <th>Velocidad Mínima</th>
+                            <th>Velocidad Máxima</th>
+                            <th>Condiciones Requeridas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ACC (Adaptativo)</strong></td>
+                            <td>0 km/h</td>
+                            <td>200 km/h</td>
+                            <td>Marcas viales visibles</td>
+                        </tr>
+                        <tr>
+                            <td><strong>LKA (Carril)</strong></td>
+                            <td>60 km/h</td>
+                            <td>200 km/h</td>
+                            <td>Marcas de carril claras</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AEB (Frenado)</strong></td>
+                            <td>5 km/h</td>
+                            <td>85 km/h</td>
+                            <td>Detección confirmada</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BSM (Ángulo muerto)</strong></td>
+                            <td>10 km/h</td>
+                            <td>Ilimitada</td>
+                            <td>Sensores operativos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección 3: ACC -->
+            <section id="acc" class="section">
+                <h2>3. Control de Crucero Adaptativo (ACC)</h2>
+
+                <h3>3.1 Descripción del Sistema</h3>
+                <p>El Control de Crucero Adaptativo (ACC) mantiene automáticamente una velocidad preestablecida y una distancia de seguimiento segura respecto al vehículo precedente.</p>
+
+                <div class="image-container">
+                    <img src="imagen1_acc.png" alt="Control de Crucero Adaptativo">
+                    <p class="image-caption">Figura 2: Sistema ACC en funcionamiento</p>
+                </div>
+
+                <h3>3.2 Procedimiento de Activación</h3>
+
+                <div class="steps">
+                    <h4>Paso a Paso:</h4>
+                    <ol>
+                        <li><strong>Verificación Previa:</strong>
+                            <ul>
+                                <li>Verificar que el parabrisas frontal esté limpio</li>
+                                <li>Confirmar que no haya mensajes de error</li>
+                            </ul>
+                        </li>
+                        <li><strong>Activación:</strong>
+                            <ul>
+                                <li>Presionar botón <strong>ON/OFF</strong> en el volante</li>
+                                <li>Acelerar hasta la velocidad deseada (mín. 30 km/h)</li>
+                                <li>Presionar <strong>SET/-</strong> o <strong>SET/+</strong></li>
+                            </ul>
+                        </li>
+                        <li><strong>Ajuste de Distancia:</strong>
+                            <ul>
+                                <li>Nivel 1: ~1.0 segundos (tráfico denso)</li>
+                                <li>Nivel 2: ~1.5 segundos (normal)</li>
+                                <li>Nivel 3: ~2.0 segundos (carretera)</li>
+                                <li>Nivel 4: ~2.5 segundos (alta velocidad)</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Precaución:</strong> El ACC puede no detectar objetos estáticos, peatones o ciclistas en ciertas condiciones climáticas.
+                </div>
+            </section>
+
+            <!-- Sección 4: LKA -->
+            <section id="lka" class="section">
+                <h2>4. Sistema de Mantenimiento de Carril (LKA/LDW)</h2>
+
+                <div class="image-container">
+                    <img src="imagen2_lka.png" alt="Lane Keeping Assist">
+                    <p class="image-caption">Figura 3: Sistema LKA detectando carriles</p>
+                </div>
+
+                <h3>4.1 Principio de Funcionamiento</h3>
+                <p>El sistema LKA utiliza una cámara estéreo montada en el parabrisas para detectar las marcas viales y aplicar correcciones de dirección suaves.</p>
+
+                <h3>4.2 Tipos de Alertas</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nivel</th>
+                            <th>Condición</th>
+                            <th>Tipo de Alerta</th>
+                            <th>Intensidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td>Aproximación (&gt;0.5 m)</td>
+                            <td>Visual (icono ámbar)</td>
+                            <td>Baja</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td>Cruce inminente (&lt;0.3 m)</td>
+                            <td>Visual + Háptica</td>
+                            <td>Media</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td>Salida detectada</td>
+                            <td>Visual + Háptica + Corrección</td>
+                            <td>Alta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección 5: AEB -->
+            <section id="aeb" class="section">
+                <h2>5. Frenado Automático de Emergencia (AEB)</h2>
+
+                <div class="image-container">
+                    <img src="imagen3_aeb.png" alt="Automatic Emergency Braking">
+                    <p class="image-caption">Figura 4: Sistema AEB detectando obstáculo</p>
+                </div>
+
+                <h3>5.1 Niveles de Intervención</h3>
+
+                <div class="alert alert-danger">
+                    <strong>NIVEL 1 - Alerta Temprana (2.5s antes):</strong><br>
+                    Icono rojo parpadeante + Alerta sonora + Pre-carga de frenos
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>NIVEL 2 - Frenado Parcial (1.5s antes):</strong><br>
+                    Frenado automático: 0.3-0.5g de desaceleración
+                </div>
+
+                <div class="alert alert-danger">
+                    <strong>NIVEL 3 - Frenado Total (0.8s antes):</strong><br>
+                    Frenado de emergencia: 0.8-1.0g + Luces de emergencia
+                </div>
+            </section>
+
+            <!-- Sección 6: BSM -->
+            <section id="bsm" class="section">
+                <h2>6. Monitor de Ángulo Muerto (BSM)</h2>
+
+                <div class="image-container">
+                    <img src="imagen4_bsm.png" alt="Blind Spot Monitoring">
+                    <p class="image-caption">Figura 5: Sistema BSM mostrando alertas laterales</p>
+                </div>
+
+                <h3>6.1 Interpretación de Alertas</h3>
+
+                <ul>
+                    <li><span class="badge">Ámbar fijo</span> Vehículo en ángulo muerto</li>
+                    <li><span class="badge badge-warning">Ámbar parpadeante</span> Cambio de carril con vehículo detectado</li>
+                    <li><span class="badge badge-success">Verde</span> Sistema activo, sin vehículos</li>
+                </ul>
+            </section>
+
+            <!-- Sección 7: Parking -->
+            <section id="parking" class="section">
+                <h2>7. Asistente de Estacionamiento</h2>
+
+                <h3>7.1 Sensores Ultrasónicos</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Distancia</th>
+                            <th>Frecuencia de Beep</th>
+                            <th>Intensidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1.5 - 2.5 m</td>
+                            <td>1 beep cada 2 seg</td>
+                            <td>Baja</td>
+                        </tr>
+                        <tr>
+                            <td>1.0 - 1.5 m</td>
+                            <td>1 beep cada 1 seg</td>
+                            <td>Media</td>
+                        </tr>
+                        <tr>
+                            <td>0.5 - 1.0 m</td>
+                            <td>2 beeps por segundo</td>
+                            <td>Alta</td>
+                        </tr>
+                        <tr>
+                            <td>&lt; 0.3 m</td>
+                            <td>Beep continuo</td>
+                            <td>Crítica</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección 8: Diagnóstico -->
+            <section id="diagnostico" class="section">
+                <h2>8. Diagnóstico y Solución de Problemas</h2>
+
+                <h3>8.1 Mensajes de Error Comunes</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Mensaje</th>
+                            <th>Causa Probable</th>
+                            <th>Solución</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>U1001</strong></td>
+                            <td>ACC NO DISPONIBLE</td>
+                            <td>Radar sucio</td>
+                            <td>Limpiar parachoques</td>
+                        </tr>
+                        <tr>
+                            <td><strong>C1020</strong></td>
+                            <td>LKA NO DISPONIBLE</td>
+                            <td>Parabrisas sucio</td>
+                            <td>Limpiar parabrisas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>U1050</strong></td>
+                            <td>AEB DESACTIVADO</td>
+                            <td>Fallo de sensor</td>
+                            <td>Recalibración requerida</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección 9: Mantenimiento -->
+            <section id="mantenimiento" class="section">
+                <h2>9. Mantenimiento y Calibración</h2>
+
+                <h3>9.1 Limpieza de Sensores</h3>
+
+                <div class="steps">
+                    <h4>Frecuencia Recomendada:</h4>
+                    <ul>
+                        <li><strong>Normal:</strong> Cada 2 semanas o 5,000 km</li>
+                        <li><strong>Polvo/caminos rurales:</strong> Cada semana</li>
+                        <li><strong>Invierno:</strong> Antes de cada viaje</li>
+                    </ul>
+                </div>
+
+                <h3>9.2 Intervalos de Mantenimiento</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Inspección</th>
+                            <th>Limpieza</th>
+                            <th>Calibración</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cámara Frontal</td>
+                            <td>10,000 km</td>
+                            <td>5,000 km</td>
+                            <td>Según necesidad</td>
+                        </tr>
+                        <tr>
+                            <td>Radar Frontal</td>
+                            <td>10,000 km</td>
+                            <td>5,000 km</td>
+                            <td>Según necesidad</td>
+                        </tr>
+                        <tr>
+                            <td>Sensores Ultrasónicos</td>
+                            <td>15,000 km</td>
+                            <td>3,000 km</td>
+                            <td>No requiere</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Sección 10: Prompts -->
+            <section id="prompts" class="section">
+                <h2>10. Prompts de Generación de Imágenes IA</h2>
+
+                <div class="code-block">
+<strong>PROMPT IMAGEN 1 - ACC:</strong><br>
+"Professional automotive brochure illustration of a modern car driving on a highway, with adaptive cruise control functionality: distance measurement lines, dashboard display, clean technical diagram style"
+<br><br>
+<strong>PROMPT IMAGEN 2 - LKA:</strong><br>
+"Technical infographic showing lane keeping assist system: car on road with lane markings, glowing sensor lines, steering correction arrows, minimalist style"
+<br><br>
+<strong>PROMPT IMAGEN 3 - AEB:</strong><br>
+"Automotive safety manual illustration of automatic emergency braking: front view of car approaching hazard, radar waves, warning icon, technical brochure style"
+<br><br>
+<strong>PROMPT IMAGEN 4 - BSM:</strong><br>
+"Modern vehicle blind spot monitoring infographic: side view with mirror warning indicators, ultrasonic sensor arcs, clean technical illustration"
+<br><br>
+<strong>PROMPT IMAGEN 5 - DIAGRAMA:</strong><br>
+"Technical flowchart diagram for ADAS system operation, sensors input, processing unit, driver alerts, professional manual style, blue and gray"
+                </div>
+            </section>
+
+            <!-- Footer del contenido -->
+            <div class="alert alert-info" style="margin-top: 3rem;">
+                <strong>📌 Nota Final:</strong> Este manual técnico ha sido diseñado para proporcionar información completa sobre la operación, mantenimiento y diagnóstico de los sistemas ADAS. Consulte siempre el manual específico del fabricante del vehículo.
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p><strong>Manual Técnico ADAS - MT-ADAS-2024-001</strong></p>
+        <p>Versión 2.1 - Enero 2024</p>
+        <p>© Todos los derechos reservados | Documento Técnico Educativo</p>
+    </footer>
+
+    <!-- Print Button -->
+    <button class="print-btn" onclick="window.print()" title="Imprimir o guardar como PDF">
+        🖨️ Imprimir / Guardar PDF
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Navigation
+        function toggleNav() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile nav if open
+                    document.getElementById('mainNav').classList.remove('active');
+                }
+            });
+        });
+
+        // Active Navigation Highlight
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 250)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav a, .sidebar a').forEach(link => {
+                link.style.background = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.background = '#e9ecef';
+                }
+            });
+        });
+
+        // Show/Hide Sidebar on Mobile
+        function handleResize() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth <= 968) {
+                sidebar.classList.remove('active');
+            } else {
+                sidebar.classList.add('active');
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Initial check
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
